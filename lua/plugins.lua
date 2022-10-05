@@ -1,53 +1,28 @@
-----------------------------------
--- PLUGINS -----------------------
-----------------------------------
-cmd([[packadd packer.nvim]])
-require("packer").startup(function(use)
-  use({ "wbthomason/packer.nvim", opt = true })
+vim.cmd [[packadd packer.nvim]]
 
-  use({
-    "hrsh7th/nvim-cmp",
-    requires = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/vim-vsnip" },
-    },
-  })
-  use({
-    "scalameta/nvim-metals",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "mfussenegger/nvim-dap",
-    },
-  })
-  use('joshdick/onedark.vim')
-  use({ 'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    config = function()
-        require('lualine').setup()
-    end,
-    })
+return require('packer').startup(function()
+    -- Packer сам себя
+    use 'wbthomason/packer.nvim'
 
-  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-        require("bufferline").setup{}
-    end, }
+    -- Цветовая схема
+    use 'joshdick/onedark.vim'
 
-	-----------------------------------------------------------
-    -- НАВИГАЦИЯ
-    -----------------------------------------------------------
-    -- Файловый менеджер
-    use {
-	'kyazdani42/nvim-tree.lua',
-    	requires = 'kyazdani42/nvim-web-devicons',
-    	config = function() require'nvim-tree'.setup {} end,
-	}
-    -- Навигация внутри файла по классам и функциям
-    use 'majutsushi/tagbar'
-    -- Замена fzf и ack
+    --- Информационная строка внизу
+    use { 'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        config = function()
+          require('lualine').setup()
+        end,
+    }
+    
     use { 'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} },
-    config = function() require'telescope'.setup {} end, }
+        requires = { {'nvim-lua/plenary.nvim'} },
+        config = function()
+            require'telescope'.setup {}
+        end,
+    }
 
+    use { 'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make'
+    }
 end)
-
