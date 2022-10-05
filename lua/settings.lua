@@ -6,7 +6,7 @@ local opt = vim.opt             -- global/buffer/windows-scoped options
 -----------------------------------------------------------
 -- Главные
 -----------------------------------------------------------
-opt.colorcolumn = '80'              -- Разделитель на 80 символов
+opt.colorcolumn = '100'             -- Разделитель на 80 символов
 opt.cursorline = true               -- Подсветка строки с курсором
 opt.spelllang= { 'en_us', 'ru' }    -- Словари рус eng
 opt.number = true                   -- Включаем нумерацию строк

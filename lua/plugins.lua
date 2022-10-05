@@ -18,11 +18,18 @@ return require('packer').startup(function()
     use { 'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} },
         config = function()
-            require'telescope'.setup {}
+            require('telescope').setup {}
         end,
     }
 
     use { 'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make'
+    }
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup {}
+        end,
     }
 end)
